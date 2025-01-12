@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useState } from "react"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "./dialog"
 
 interface ModalProps {
@@ -17,10 +18,17 @@ export const Modal: React.FC<ModalProps> = ({
     onClose,
     children
 }) => {
+    const [isMounted, setIsMounted] = useState(false)
     const onChange = (open: boolean) => {
         if (!open) {
             onClose()
         }
+    }
+
+    useEffect(() => { setIsMounted(true) }, [])
+
+    if (!isMounted) {
+        return null
     }
 
     return (

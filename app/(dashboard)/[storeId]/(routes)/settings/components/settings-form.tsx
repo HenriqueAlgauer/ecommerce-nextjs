@@ -10,7 +10,6 @@ import { toast } from "react-hot-toast"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useParams, useRouter } from "next/navigation"
 
-import { AlertModal } from "@/components/modals/alert-modal"
 import { Heading } from "@/components/ui/heading"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
@@ -22,6 +21,7 @@ import {
     FormLabel
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import AlertModal from "@/components/modals/alert-modal"
 
 interface SettingsFormProps {
     initialData: Store
@@ -77,7 +77,7 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({
                     disabled={loading}
                     variant='destructive'
                     size='icon'
-                    onClick={() => { }}
+                    onClick={() => setOpen(true)}
                 >
                     <Trash className='h-4 w-4' />
                 </Button>
