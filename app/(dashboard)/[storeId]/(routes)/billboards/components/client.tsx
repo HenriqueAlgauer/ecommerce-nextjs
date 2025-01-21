@@ -3,10 +3,17 @@
 import { Button } from "@/components/ui/button"
 import { Heading } from "@/components/ui/heading"
 import { Separator } from "@/components/ui/separator"
+import { Billboard } from "@prisma/client"
 import { Plus } from "lucide-react"
 import { useParams, useRouter } from "next/navigation"
 
-export const BillBoardClient = () => {
+interface BillboardClientProps {
+    data: Billboard[]
+}
+
+export const BillBoardClient: React.FC<BillboardClientProps> = ({
+    data
+}) => {
     const router = useRouter()
     const params = useParams()
 
@@ -14,7 +21,7 @@ export const BillBoardClient = () => {
         <>
             <div className='flex items-center justify-between'>
                 <Heading
-                    title="Billboards (0)"
+                    title={`Billboards (${data.length})`}
                     description="Manage billboards for your store"
                 />
                 <Button onClick={() => router.push(`/${params.storeId}/billboards/new`)}>
